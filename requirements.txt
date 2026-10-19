@@ -1,0 +1,14 @@
+# Component 1 (mock ETSI QKD 014 server)
+fastapi
+uvicorn[standard]
+pyyaml
+
+# Components 2-7
+liboqs-python>=0.16.0   # ML-KEM + FrodoKEM; see the liboqs note in README.md
+httpx                   # QKD client transport
+matplotlib              # figures (Agg backend, headless-safe)
+
+# Tests
+pytest
+jsonschema
+cryptography            # third-party cross-check for the HKDF-SHA3-256 KATs

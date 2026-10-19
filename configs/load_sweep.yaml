@@ -1,0 +1,50 @@
+# Rate x supply starvation sweep, and the headline downgrade study.
+
+sweep:
+  # 6 rates x 3 supplies = 18 configurations.
+  handshake_rates_hps: [1, 5, 10, 20, 50, 100]
+  qkd_supply_bps: [1000, 10000, 100000]     # 1, 10, 100 kbps
+  duration_seconds: 60
+  # ML-KEM-768 everywhere in the sweep: the sweep studies key supply, not
+  # KEM choice (benchmark.yaml covers KEM choice).
+  kem: ML-KEM-768
+  qkd_mode: reference_silent
+  # Concurrent in-flight handshakes. Measured on this machine: 16 workers
+  # sustain ~112 hybrid handshakes/sec, comfortably above the 100 hps top
+  # rate, while 48 workers collapse to ~45 hps -- the mock KME's sync
+  # endpoints thrash under deeper concurrency. Configurations where the
+  # generator was nonetheless the limit are counted in the
+  # generator_saturated column rather than silently biasing the result.
+  worker_threads: 16
+  # Warm-up before measuring, so a pool that starts empty does not make the
+  # first seconds of every run look like starvation.
+  warmup_seconds: 2.0
+  pool:
+    max_keys: 1024
+    key_size_bits: 256
+  sampler_interval_seconds: 0.1
+
+downgrade_study:
+  # Fixed supply, rising load: the experiment that answers the research
+  # question directly. 10 kbps = 39.06 hybrid handshakes/sec ceiling.
+  qkd_supply_bps: 10000
+  handshake_rates_hps: [1, 5, 10, 20, 30, 39, 50, 75, 100]
+  duration_seconds: 30
+  kem: ML-KEM-768
+  worker_threads: 16
+  warmup_seconds: 2.0
+  # A load level counts as "below the knee" while its silent-downgrade rate
+  # stays under this threshold.
+  knee_downgrade_threshold: 0.05
+  pool:
+    max_keys: 1024
+    key_size_bits: 256
+  sampler_interval_seconds: 0.1
+
+output:
+  sweep_csv: results/starvation_sweep.csv
+  sweep_summary_csv: results/starvation_summary.csv
+  pool_csv: results/pool_occupancy.csv
+  downgrade_csv: results/downgrade_events.csv
+  downgrade_summary_csv: results/downgrade_summary.csv
+  server_log: results/qkd_server.log.jsonl

@@ -1,0 +1,113 @@
+# ---------------------------------------------------------------------------
+# Local-only material
+# ---------------------------------------------------------------------------
+# Course reports, submission templates and the long-form design notes. These
+# are kept locally rather than published with the code.
+extras/
+
+# ---------------------------------------------------------------------------
+# Generated measurement artefacts
+# ---------------------------------------------------------------------------
+# The result CSVs, summary JSON and figures ARE tracked: they are the data
+# behind the report and let a reader see the results without a 42-minute run.
+# What is excluded is the raw event logs, which are large (the key-server log
+# alone is ~38 MB), regenerable, and of no interest once the CSVs exist.
+*.log.jsonl
+*.log
+results/_probe*
+results/run_all_full.log
+results/benchmark_rerun.log
+
+# ---------------------------------------------------------------------------
+# Python
+# ---------------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib60/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+.env
+.python-version
+
+# Testing and coverage
+.pytest_cache/
+.tox/
+.nox/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+*.cover
+.hypothesis/
+
+# Type checkers and linters
+.mypy_cache/
+.dmypy.json
+.ruff_cache/
+.pyre/
+.pytype/
+
+# ---------------------------------------------------------------------------
+# liboqs
+# ---------------------------------------------------------------------------
+# liboqs-python builds the native library into a local prefix on first import.
+# It is a build artefact, never a source file.
+_oqs/
+liboqs/
+*.dll
+*.dylib
+
+# ---------------------------------------------------------------------------
+# Node (used only to generate the report document, not by the testbed)
+# ---------------------------------------------------------------------------
+node_modules/
+package-lock.json
+npm-debug.log*
+
+# ---------------------------------------------------------------------------
+# Editors and IDEs
+# ---------------------------------------------------------------------------
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.claude/
+
+# ---------------------------------------------------------------------------
+# Operating system and cloud-sync debris
+# ---------------------------------------------------------------------------
+# This project lives inside a OneDrive folder, which scatters desktop.ini
+# files, and Word leaves ~$ lock files beside any open document.
+desktop.ini
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+~$*
+*.tmp

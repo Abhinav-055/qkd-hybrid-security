@@ -1,0 +1,61 @@
+# Mitigation comparison.
+# Four configurations over the same load sweep, against one fixed supply.
+
+mitigation_study:
+  qkd_supply_bps: 10000                      # 39.06 hybrid handshakes/sec ceiling
+  handshake_rates_hps: [10, 39, 60, 100]
+  duration_seconds: 30
+  kem: ML-KEM-768
+  worker_threads: 16
+  warmup_seconds: 2.0
+  sampler_interval_seconds: 0.1
+  # Simulated peers sharing the one QKD supply. Fairness (Jain's index) is
+  # computed across these.
+  peers: 4
+  # One greedy peer offers this multiple of an equal share, so quota has
+  # something to actually protect against. 1.0 = every peer equal.
+  greedy_peer_multiplier: 4.0
+  pool:
+    max_keys: 1024
+    key_size_bits: 256
+
+  configurations:
+    - name: reference
+      description: "REFERENCE_SILENT, no mitigation: the phenomenon under study"
+      qkd_mode: reference_silent
+      quota: false
+      admission_control: false
+
+    - name: quota
+      description: "Per-peer token bucket at an equal share of supply"
+      qkd_mode: reference_silent
+      quota: true
+      admission_control: false
+
+    - name: admission_control
+      description: "Reject before crypto when projected supply is insufficient"
+      qkd_mode: reference_silent
+      quota: false
+      admission_control: true
+
+    - name: explicit_downgrade
+      description: "Same behaviour as reference, but the application is told"
+      qkd_mode: explicit_downgrade
+      quota: false
+      admission_control: false
+
+quota:
+  window_seconds: 1.0
+  # Each peer's allowance as a fraction of an equal share of supply/256.
+  share_of_equal_split: 1.0
+
+admission_control:
+  keys_per_handshake: 1
+  horizon_seconds: 0.05
+  safety_margin_keys: 1.0
+
+output:
+  csv: results/mitigation_results.csv
+  events_csv: results/mitigation_events.csv
+  summary_json: results/mitigation_summary.json
+  server_log: results/qkd_server.log.jsonl

@@ -1,0 +1,29 @@
+# Per-KEM performance benchmark.
+# 1000 runs x 4 KEMs x 2 protocols. No parameters are hard-coded in Python.
+
+benchmark:
+  runs_per_configuration: 1000
+  kems:
+    - ML-KEM-512
+    - ML-KEM-768
+    - ML-KEM-1024
+    - FrodoKEM-976-AES
+  protocols:
+    - hybrid_hake     # QKD key mixed in, pool kept fully stocked
+    - pure_pqc        # baseline, no QKD at all
+  # Progress line every N runs (0 disables).
+  progress_every: 250
+
+# The benchmark measures protocol cost, not starvation: supply is set far
+# above demand so no run is ever downgraded. A run that downgrades here is a
+# bug and the benchmark aborts.
+qkd_server:
+  refill_rate_bps: 20000000   # 20 Mbps -> ~78k keys/sec at 256-bit keys
+  max_keys: 4096
+  key_size_bits: 256
+  prefill_keys: 64            # wait for this many keys before starting
+  log_path: results/qkd_server.log.jsonl
+
+output:
+  csv: results/benchmark.csv
+  summary_json: results/benchmark_summary.json

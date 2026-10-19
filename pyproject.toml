@@ -1,0 +1,8 @@
+[tool.pytest.ini_options]
+pythonpath = ["."]
+# Slow tests (the 10,000-handshake validation) are deselected by default.
+# Run them with:  pytest -m slow
+addopts = "-m 'not slow'"
+markers = [
+    "slow: long-running validation, deselected unless explicitly requested",
+]

@@ -1,0 +1,16 @@
+server:
+  host: 127.0.0.1
+  port: 8000
+
+pool:
+  refill_rate_bps: 10000      # 10 kbps -> ~39 keys/sec at 256-bit keys
+  max_keys: 1024
+  key_size_bits: 256
+
+identity:
+  kme_id: "KME-ALICE"
+  sae_ids: ["SAE-ALICE", "SAE-BOB"]
+
+logging:
+  path: "results/qkd_server.log.jsonl"
+  level: "INFO"

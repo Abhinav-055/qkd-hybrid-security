@@ -1,0 +1,196 @@
+{
+  "cost_of_hybridization": {
+    "FrodoKEM-976-AES": {
+      "bytes_total_delta": 36,
+      "cpu_ms_mean_delta": 3.1719,
+      "latency_ms_median_delta": 5.8756,
+      "latency_overhead_percent": 9.17
+    },
+    "ML-KEM-1024": {
+      "bytes_total_delta": 36,
+      "cpu_ms_mean_delta": 5.4063,
+      "latency_ms_median_delta": 10.9687,
+      "latency_overhead_percent": 171.73
+    },
+    "ML-KEM-512": {
+      "bytes_total_delta": 36,
+      "cpu_ms_mean_delta": 3.7032,
+      "latency_ms_median_delta": 8.3091,
+      "latency_overhead_percent": 296.03
+    },
+    "ML-KEM-768": {
+      "bytes_total_delta": 36,
+      "cpu_ms_mean_delta": 4.3438,
+      "latency_ms_median_delta": 9.9625,
+      "latency_overhead_percent": 222.54
+    }
+  },
+  "cpu_measurement_note": "Per-run cpu_ms is quantized by the OS scheduler tick, so use cpu_ms_mean (= total CPU / runs); cpu_ms_median and cpu_ms_p95 are artifacts of that quantization on fast KEMs.",
+  "elapsed_seconds": 195.5,
+  "kem_parameters": {
+    "FrodoKEM-976-AES": {
+      "ciphertext": 15792,
+      "nist_level": 3,
+      "public_key": 15632,
+      "shared_secret": 24
+    },
+    "ML-KEM-1024": {
+      "ciphertext": 1568,
+      "nist_level": 5,
+      "public_key": 1568,
+      "shared_secret": 32
+    },
+    "ML-KEM-512": {
+      "ciphertext": 768,
+      "nist_level": 1,
+      "public_key": 800,
+      "shared_secret": 32
+    },
+    "ML-KEM-768": {
+      "ciphertext": 1088,
+      "nist_level": 3,
+      "public_key": 1184,
+      "shared_secret": 32
+    }
+  },
+  "per_configuration": {
+    "hybrid_hake|FrodoKEM-976-AES": {
+      "bytes_received": 31698,
+      "bytes_sent": 31625,
+      "bytes_total": 63323,
+      "cpu_ms_mean": 64.75,
+      "cpu_ms_median": 62.5,
+      "cpu_ms_p95": 78.125,
+      "kem": "FrodoKEM-976-AES",
+      "latency_drift_ratio": 0.9768,
+      "latency_ms_max": 125.3412,
+      "latency_ms_median": 69.9312,
+      "latency_ms_min": 37.8234,
+      "latency_ms_p95": 83.5573,
+      "protocol": "hybrid_hake",
+      "runs": 1000,
+      "successes": 1000
+    },
+    "hybrid_hake|ML-KEM-1024": {
+      "bytes_received": 3250,
+      "bytes_sent": 3327,
+      "bytes_total": 6577,
+      "cpu_ms_mean": 12.1094,
+      "cpu_ms_median": 15.625,
+      "cpu_ms_p95": 31.25,
+      "kem": "ML-KEM-1024",
+      "latency_drift_ratio": 1.0695,
+      "latency_ms_max": 62.4196,
+      "latency_ms_median": 17.3559,
+      "latency_ms_min": 11.8575,
+      "latency_ms_p95": 21.399,
+      "protocol": "hybrid_hake",
+      "runs": 1000,
+      "successes": 1000
+    },
+    "hybrid_hake|ML-KEM-512": {
+      "bytes_received": 1650,
+      "bytes_sent": 1757,
+      "bytes_total": 3407,
+      "cpu_ms_mean": 6.6094,
+      "cpu_ms_median": 0.0,
+      "cpu_ms_p95": 15.625,
+      "kem": "ML-KEM-512",
+      "latency_drift_ratio": 0.6093,
+      "latency_ms_max": 86.2159,
+      "latency_ms_median": 11.1159,
+      "latency_ms_min": 2.9689,
+      "latency_ms_p95": 15.4819,
+      "protocol": "hybrid_hake",
+      "runs": 1000,
+      "successes": 1000
+    },
+    "hybrid_hake|ML-KEM-768": {
+      "bytes_received": 2290,
+      "bytes_sent": 2461,
+      "bytes_total": 4751,
+      "cpu_ms_mean": 8.9688,
+      "cpu_ms_median": 15.625,
+      "cpu_ms_p95": 15.625,
+      "kem": "ML-KEM-768",
+      "latency_drift_ratio": 1.0438,
+      "latency_ms_max": 46.1502,
+      "latency_ms_median": 14.4393,
+      "latency_ms_min": 3.6936,
+      "latency_ms_p95": 18.1366,
+      "protocol": "hybrid_hake",
+      "runs": 1000,
+      "successes": 1000
+    },
+    "pure_pqc|FrodoKEM-976-AES": {
+      "bytes_received": 31698,
+      "bytes_sent": 31589,
+      "bytes_total": 63287,
+      "cpu_ms_mean": 61.5781,
+      "cpu_ms_median": 62.5,
+      "cpu_ms_p95": 78.125,
+      "kem": "FrodoKEM-976-AES",
+      "latency_drift_ratio": 0.9747,
+      "latency_ms_max": 140.8626,
+      "latency_ms_median": 64.0556,
+      "latency_ms_min": 33.8646,
+      "latency_ms_p95": 77.5887,
+      "protocol": "pure_pqc",
+      "runs": 1000,
+      "successes": 1000
+    },
+    "pure_pqc|ML-KEM-1024": {
+      "bytes_received": 3250,
+      "bytes_sent": 3291,
+      "bytes_total": 6541,
+      "cpu_ms_mean": 6.7031,
+      "cpu_ms_median": 0.0,
+      "cpu_ms_p95": 15.625,
+      "kem": "ML-KEM-1024",
+      "latency_drift_ratio": 1.0355,
+      "latency_ms_max": 16.6962,
+      "latency_ms_median": 6.3872,
+      "latency_ms_min": 4.7509,
+      "latency_ms_p95": 9.8955,
+      "protocol": "pure_pqc",
+      "runs": 1000,
+      "successes": 1000
+    },
+    "pure_pqc|ML-KEM-512": {
+      "bytes_received": 1650,
+      "bytes_sent": 1721,
+      "bytes_total": 3371,
+      "cpu_ms_mean": 2.9062,
+      "cpu_ms_median": 0.0,
+      "cpu_ms_p95": 15.625,
+      "kem": "ML-KEM-512",
+      "latency_drift_ratio": 0.776,
+      "latency_ms_max": 8.3383,
+      "latency_ms_median": 2.8068,
+      "latency_ms_min": 1.0497,
+      "latency_ms_p95": 5.3931,
+      "protocol": "pure_pqc",
+      "runs": 1000,
+      "successes": 1000
+    },
+    "pure_pqc|ML-KEM-768": {
+      "bytes_received": 2290,
+      "bytes_sent": 2425,
+      "bytes_total": 4715,
+      "cpu_ms_mean": 4.625,
+      "cpu_ms_median": 0.0,
+      "cpu_ms_p95": 15.625,
+      "kem": "ML-KEM-768",
+      "latency_drift_ratio": 1.2047,
+      "latency_ms_max": 8.7338,
+      "latency_ms_median": 4.4768,
+      "latency_ms_min": 1.5112,
+      "latency_ms_p95": 6.9956,
+      "protocol": "pure_pqc",
+      "runs": 1000,
+      "successes": 1000
+    }
+  },
+  "runs_per_configuration": 1000,
+  "total_runs": 8000
+}
